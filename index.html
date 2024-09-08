@@ -3,321 +3,650 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="StopTogel adalah inisiatif untuk membantu individu bebas dari jerat perjudian togel. Temukan dukungan, edukasi, dan bantuan untuk membebaskan diri dari kecanduan togel.">
-    <meta name="keywords" content="Stop togel, bahaya togel, perjudian, bebas dari togel, bantuan perjudian, kecanduan judi, konseling judi, bebas togel, dukungan perjudian, zaenishi, sijamur">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="zaenishi">
-    <title>StopTogel - Bebaskan Diri dari Jerat Perjudian</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Waspada Togel: Kenali Risikonya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #e74c3c;
-            --accent-color: #f39c12;
-            --background-color: #f0f0f0;
-            --text-color: #333;
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #e74c3c;
+            --background-light: #ecf0f1;
+            --text-light: #2c3e50;
+            --text-dark: #ecf0f1;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode {
+            --primary-color: #34495e;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --background-light: #2c3e50;
+            --text-light: #ecf0f1;
+            --text-dark: #2c3e50;
+            --shadow-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .dark-mode {
-            --background-color: #1a1a1a;
-            --text-color: #f0f0f0;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .neumorphic {
-            background: var(--background-color);
-            box-shadow: 20px 20px 60px #d1d1d1, -20px -20px 60px #ffffff;
-            border-radius: 50px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .dark-mode .neumorphic {
-            box-shadow: 20px 20px 60px #0d0d0d, -20px -20px 60px #272727;
-        }
-
-        .neumorphic:hover {
-            transform: translateY(-5px);
-        }
-
-        .btn-primary {
+        header {
             background-color: var(--primary-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-
-        .progress-bar {
-            width: 0;
-            height: 4px;
-            background-color: var(--accent-color);
+            padding: 20px 0;
             position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero-background {
+            position: absolute;
             top: 0;
             left: 0;
-            z-index: 9999;
-            transition: width 0.3s ease;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: all 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .risks {
+            padding: 100px 0;
+            background-color: var(--background-light);
+            position: relative;
+        }
+
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .risk-card {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .risk-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .risk-card:hover::before {
+            opacity: 1;
+        }
+
+        .risk-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px var(--shadow-color);
+        }
+
+        .risk-icon {
+            font-size: 48px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .risk-card:hover .risk-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .facts {
+            background-color: var(--secondary-color);
+            padding: 100px 0;
+            color: var(--text-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .facts::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://picsum.photos/3000/2050?random=2') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .fact-list {
+            list-style: none;
+            padding: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fact-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+            padding: 30px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .fact-item:hover {
+            transform: translateX(10px) scale(1.02);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .alternatives {
+            padding: 100px 0;
+            background-color: var(--background-light);
+            position: relative;
+        }
+
+        .alternative-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .alternative-card {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alternative-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .alternative-card:hover::before {
+            opacity: 0.3;
+        }
+
+        .alternative-card:hover {
+            transform: translateY(-20px) rotateY(10deg);
+            box-shadow: 0 20px 40px var(--shadow-color);
+        }
+
+        .alternative-icon {
+            font-size: 48px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .alternative-card:hover .alternative-icon {
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: var(--accent-color);
+            transform: rotate(360deg);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .risk-grid, .alternative-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Particle effect */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
     </style>
 </head>
-<body x-data="{ darkMode: false, showModal: false }" :class="{ 'dark-mode': darkMode }">
-    <div class="progress-bar" id="progressBar"></div>
+<body>
+    <div id="particles-js"></div>
 
-    <header class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 sticky top-0 z-50">
-        <nav class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold animate__animated animate__fadeIn">StopTogel</a>
-            <div class="flex items-center space-x-4">
-                <a href="#tentang" class="hover:text-yellow-300 transition duration-300">Tentang</a>
-                <a href="#bahaya" class="hover:text-yellow-300 transition duration-300">Bahaya</a>
-                <a href="#bantuan" class="hover:text-yellow-300 transition duration-300">Bantuan</a>
-                <button @click="darkMode = !darkMode" class="p-2 rounded-full bg-white text-gray-800 transition duration-300 transform hover:rotate-180">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                    </svg>
-                </button>
-            </div>
+    <header>
+        <nav class="container">
+            <div class="logo">Waspada Togel</div>
+            <ul class="nav-links">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#risiko">Risiko</a></li>
+                <li><a href="#fakta">Fakta</a></li>
+                <li><a href="#alternatif">Alternatif</a></li>
+            </ul>
         </nav>
     </header>
 
     <main>
-        <section class="parallax h-screen flex items-center justify-center" style="background-image: url('https://picsum.photos/1920/1080?random=1');">
-            <div class="text-center text-white glass p-8 animate__animated animate__fadeIn">
-                <h1 class="text-5xl font-bold mb-4">Bebaskan Diri dari Jerat Togel</h1>
-                <p class="text-xl mb-8">Temukan kebebasan finansial dan kebahagiaan sejati tanpa togel</p>
-                <a href="#bantuan" class="btn-primary bg-yellow-500 hover:bg-yellow-600 transition duration-300">Dapatkan Bantuan Sekarang</a>
+        <section id="beranda" class="hero">
+            <div id="hero-background"></div>
+            <div class="hero-content">
+                <h1>Kenali Risiko di Balik Togel</h1>
+                <p>Togel mungkin terlihat menarik, tapi tahukah Anda dampaknya? Mari kita jelajahi bersama dan buat keputusan yang bijak.</p>
+                <a href="#risiko" class="btn">Pelajari Lebih Lanjut</a>
             </div>
         </section>
 
-        <section id="tentang" class="py-16 bg-gray-100 dark:bg-gray-800">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-8 animate__animated animate__fadeIn">Tentang Kami</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="neumorphic animate__animated animate__fadeInLeft">
-                        <h3 class="text-2xl font-bold mb-4">Misi Kami</h3>
-                        <p>Kami berkomitmen untuk membantu individu yang terjerat dalam lingkaran setan perjudian togel. Melalui edukasi, dukungan, dan pemberdayaan, kami bertujuan untuk menciptakan masyarakat yang bebas dari dampak negatif perjudian.</p>
+        <section id="risiko" class="risks">
+            <div class="container">
+                <h2>Risiko yang Perlu Diketahui</h2>
+                <div class="risk-grid">
+                    <div class="risk-card" data-tilt data-tilt-max="10">
+                        <i class="fas fa-wallet risk-icon"></i>
+                        <h3>Kerugian Finansial</h3>
+                        <p>Togel bisa menguras tabungan Anda dengan cepat. Ketahui risiko finansial yang mungkin terjadi.</p>
                     </div>
-                    <div class="neumorphic animate__animated animate__fadeInRight">
-                        <h3 class="text-2xl font-bold mb-4">Visi Kami</h3>
-                        <p>Kami membayangkan Indonesia yang bebas dari pengaruh togel, di mana setiap individu dapat mencapai potensi penuh mereka tanpa terhalang oleh kecanduan judi. Bersama-sama, kita dapat menciptakan masa depan yang lebih cerah.</p>
+                    <div class="risk-card" data-tilt data-tilt-max="10">
+                        <i class="fas fa-brain risk-icon"></i>
+                        <h3>Dampak Psikologis</h3>
+                        <p>Kecanduan togel dapat memengaruhi kesehatan mental dan hubungan sosial Anda.</p>
+                    </div>
+                    <div class="risk-card" data-tilt data-tilt-max="10">
+                        <i class="fas fa-balance-scale risk-icon"></i>
+                        <h3>Masalah Hukum</h3>
+                        <p>Togel ilegal dapat membawa konsekuensi hukum. Pahami risiko yang mungkin Anda hadapi.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="bahaya" class="py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-8 animate__animated animate__fadeIn">Bahaya Togel</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="neumorphic animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-                        <h3 class="text-xl font-bold mb-4">Kerugian Finansial</h3>
-                        <p>Togel dapat menguras tabungan Anda dan menjerumuskan Anda ke dalam hutang yang dalam.</p>
-                    </div>
-                    <div class="neumorphic animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-                        <h3 class="text-xl font-bold mb-4">Kerusakan Hubungan</h3>
-                        <p>Kecanduan togel dapat merusak hubungan dengan keluarga, teman, dan rekan kerja.</p>
-                    </div>
-                    <div class="neumorphic animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
-                        <h3 class="text-xl font-bold mb-4">Masalah Hukum</h3>
-                        <p>Togel ilegal dapat membawa Anda ke dalam masalah hukum yang serius.</p>
-                    </div>
-                </div>
+        <section id="fakta" class="facts">
+            <div class="container">
+                <h2>Fakta Menarik</h2>
+                <ul class="fact-list">
+                    <li class="fact-item">
+                        <p>Tahukah Anda? Peluang menang jackpot togel sangat kecil, bahkan lebih kecil dari kemungkinan tersambar petir.</p>
+                    </li>
+                    <li class="fact-item">
+                        <p>Studi menunjukkan bahwa 80% pemain togel reguler mengalami kerugian finansial jangka panjang.</p>
+                    </li>
+                    <li class="fact-item">
+                        <p>Banyak negara melarang togel karena dampak negatifnya terhadap masyarakat dan ekonomi.</p>
+                    </li>
+                </ul>
             </div>
         </section>
 
-        <section class="py-16 bg-gray-100 dark:bg-gray-800">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-8 animate__animated animate__fadeIn">Statistik Togel di Indonesia</h2>
-        <div class="flex justify-center items-center">
-            <div class="neumorphic">
-                <canvas id="togelChart" width="400" height="200"></canvas>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-        <section id="bantuan" class="py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-8 animate__animated animate__fadeIn">Dapatkan Bantuan</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="neumorphic animate__animated animate__fadeInLeft">
-                        <h3 class="text-2xl font-bold mb-4">Hotline Bantuan</h3>
-                        <p class="text-3xl font-bold text-primary mb-2">1-800-GAMBLER</p>
-                        <p>Tersedia 24/7 untuk membantu Anda</p>
+        <section id="alternatif" class="alternatives">
+            <div class="container">
+                <h2>Alternatif yang Lebih Baik</h2>
+                <div class="alternative-grid">
+                    <div class="alternative-card" data-tilt data-tilt-max="10">
+                        <i class="fas fa-piggy-bank alternative-icon"></i>
+                        <h3>Menabung</h3>
+                        <p>Alihkan dana togel Anda ke tabungan. Lihat bagaimana uang Anda tumbuh tanpa risiko.</p>
                     </div>
-                    <div class="neumorphic animate__animated animate__fadeInRight">
-                        <h3 class="text-2xl font-bold mb-4">Konseling Online</h3>
-                        <p class="mb-4">Dapatkan bantuan dari para ahli melalui chat atau video call</p>
-                        <button @click="showModal = true" class="btn-primary bg-green-500 hover:bg-green-600 transition duration-300">Mulai Konseling</button>
+                    <div class="alternative-card" data-tilt data-tilt-max="10">
+                        <i class="fas fa-chart-line alternative-icon"></i>
+                        <h3>Investasi</h3>
+                        <p>Pelajari investasi yang aman dan legal. Bangun masa depan finansial yang lebih cerah.</p>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 bg-gray-100 dark:bg-gray-800">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-8 animate__animated animate__fadeIn">Kisah Sukses</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="neumorphic animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-                        <img src="https://picsum.photos/300/200?random=4" alt="Foto Budi" class="w-full h-48 object-cover rounded-t-lg mb-4">
-                        <h3 class="text-xl font-bold mb-2">Budi</h3>
-                        <p>"Setelah 5 tahun terjerat togel, akhirnya saya bisa bebas. Hidup saya jauh lebih baik sekarang."</p>
-                    </div>
-                    <div class="neumorphic animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-                        <img src="https://picsum.photos/300/200?random=5" alt="Foto Siti" class="w-full h-48 object-cover rounded-t-lg mb-4">
-                        <h3 class="text-xl font-bold mb-2">Siti</h3>
-                        <p>"Togel hampir menghancurkan keluarga saya. Dengan bantuan, saya berhasil berhenti dan memperbaiki semuanya."</p>
-                    </div>
-                    <div class="neumorphic animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
-                        <img src="https://picsum.photos/300/200?random=6" alt="Foto Rudi" class="w-full h-48 object-cover rounded-t-lg mb-4">
-                        <h3 class="text-xl font-bold mb-2">Rudi</h3>
-                        <p>"Dulu saya berpikir togel adalah jalan pintas. Sekarang saya tahu bahwa kerja keras adalah kunci kesuksesan sejati."</p>
+                    <div class="alternative-card" data-tilt data-tilt-max="10">
+                        <i class="fas fa-hiking alternative-icon"></i>
+                        <h3>Hobi Baru</h3>
+                        <p>Temukan kegembiraan dalam hobi baru yang positif dan mengembangkan diri Anda.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2024 StopTogel Made By Zaenishi 🍄. Semua hak cipta dilindungi.</p>
-            <p class="mt-2">Bersama, kita bisa menghentikan kecanduan togel dan membangun masa depan yang lebih cerah.</p>
-            <div class="mt-4 flex justify-center space-x-4">
-                <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-                <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-                <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </footer>
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
 
-    <div class="fixed bottom-4 right-4 animate-float">
-        <a href="#bantuan" class="btn-primary bg-green-500 hover:bg-green-600 transition duration-300">
-            Butuh Bantuan?
-        </a>
-    </div>
-
-    <div x-show="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" x-cloak>
-        <div class="bg-white p-8 rounded-lg max-w-md w-full">
-            <h2 class="text-2xl font-bold mb-4">Mulai Konseling</h2>
-            <p class="mb-4">Silakan isi formulir di bawah ini untuk memulai sesi konseling online:</p>
-            <form>
-                <input type="text" placeholder="Nama Anda" class="w-full p-2 mb-4 border rounded">
-                <input type="email" placeholder="Email Anda" class="w-full p-2 mb-4 border rounded">
-                <textarea placeholder="Pesan Anda" class="w-full p-2 mb-4 border rounded" rows="4"></textarea>
-                <div class="flex justify-end">
-                    <button type="button" @click="showModal = false" class="btn-primary bg-gray-500 hover:bg-gray-600 mr-2">Batal</button>
-                    <button type="submit" class="btn-primary bg-green-500 hover:bg-green-600">Kirim</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Animasi scroll smooth
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
 
-        // Progress bar
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progressBar').style.width = scrolled + '%';
-        });
-
-        // Chart
-        const ctx = document.getElementById('togelChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
-                datasets: [{
-                    label: 'Persentase Pemain Togel',
-                    data: [12, 15, 18, 14, 10, 70, 100],
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Persentase (%)'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Tahun'
-                        }
-                    }
-                }
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
             }
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from('.hero-content', {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.risk-card', {
+            scrollTrigger: {
+                trigger: '.risks',
+                start: 'top 80%'
+            },
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.fact-item', {
+            scrollTrigger: {
+                trigger: '.facts',
+                start: 'top 80%'
+            },
+            opacity: 0,
+            x: -50,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.alternative-card', {
+            scrollTrigger: {
+                trigger: '.alternatives',
+                start: 'top 80%'
+            },
+            opacity: 0,
+            scale: 0.8,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+
+        // Three.js Background Animation
+        let scene, camera, renderer, particles, positions, colors;
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('hero-background').appendChild(renderer.domElement);
+
+            const geometry = new THREE.BufferGeometry();
+            const numPoints = 5000;
+
+            positions = new Float32Array(numPoints * 3);
+            colors = new Float32Array(numPoints * 3);
+
+            for (let i = 0; i < numPoints * 3; i += 3) {
+                positions[i] = (Math.random() - 0.5) * 10;
+                positions[i + 1] = (Math.random() - 0.5) * 10;
+                positions[i + 2] = (Math.random() - 0.5) * 10;
+
+                colors[i] = Math.random();
+                colors[i + 1] = Math.random();
+                colors[i + 2] = Math.random();
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({ size: 0.05, vertexColors: true });
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            particles.rotation.x += 0.001;
+            particles.rotation.y += 0.002;
+
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        init();
+        animate();
+
+        // Vanilla-tilt.js
+        VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+            max: 25,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5,
+        });
+
+        // Particles.js
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle", stroke: { width: 0, color: "#000000" }, polygon: { nb_sides: 5 }, image: { src: "img/github.svg", width: 100, height: 100 } },
+                opacity: { value: 0.5, random: false, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
+                size: { value: 3, random: true, anim: { enable: false, speed: 40, size_min: 0.1, sync: false } },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 } }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } }
+            },
+            retina_detect: true
         });
     </script>
 </body>
